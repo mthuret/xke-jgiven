@@ -12,8 +12,8 @@ Feature: Picture Processor Protocol
     Examples:
       | colorimetry     | format   | picture processor instructions |
       | COLOR           | IDENTITY | C;I                            |
-      | BLACK_AND_WHITE | PORTRAIT | BW;P                           |
+      | BLACK_AND_WHITE | MINI     | BW;M                           |
       | COLOR           | PORTRAIT | C;P                            |
-      | VINTAGE         | MINI     | V;M                            |
+      | VINTAGE         | PORTRAIT | V;P                            |
 
 

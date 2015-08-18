@@ -1,13 +1,14 @@
-package fr.photomaton.domain.tags;
+package fr.photomaton.domain.jgiven.tags;
 
 import com.tngtech.jgiven.annotation.IsTag;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IsTag( type = "Feature", value = "Mapping",
-    description = "Should map something" )
+@Colorimetry
+@IsTag(  value = "Vintage",
+    description = "" )
 @Retention( RetentionPolicy.RUNTIME )
-public @interface Mapping {
+public @interface Vintage {
 
 }

@@ -4,6 +4,7 @@ import com.google.common.io.Resources;
 import com.googlecode.catchexception.apis.CatchExceptionAssertJ;
 import com.tngtech.jgiven.annotation.ScenarioRule;
 import cucumber.api.PendingException;
+import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -46,6 +47,7 @@ public class PhotomatonStepDefs {
     private Validator pictureCombinationValidator = new PictureCombinationValidator();
     private Picture picture;
     private File processedPicture;
+    private Scenario scenario;
 
 
     @org.junit.Before
@@ -55,8 +57,9 @@ public class PhotomatonStepDefs {
     }
 
     @Before
-    public void setup(){
+    public void setup(Scenario scenario){
         this.photoMaker = new PhotoMaker(pictureProcessor, identityValidator, priceValidator, pictureCombinationValidator);
+        this.scenario = scenario;
     }
 
     @Given("^an identity picture is taken by the photomaton$")
@@ -112,22 +115,29 @@ public class PhotomatonStepDefs {
 
     @Then("^a sepia effect should be apply to the picture$")
     public void a_sepia_effect_should_be_apply_to_the_picture() throws Throwable {
-        assertThat(Files.isSameFile(processedPicture.toPath(), getPicture("dog-sepia.jpeg").toPath()));
+        File picture = getPicture("dog-sepia.jpeg");
+        assertThat(Files.isSameFile(processedPicture.toPath(), picture.toPath()));
+        scenario.embed(com.google.common.io.Files.toByteArray(picture), "image/png");
     }
 
     @Then("^the picture should be displayed four times$")
     public void the_picture_should_be_displayed_four_times() throws Throwable {
-        assertThat(Files.isSameFile(processedPicture.toPath(), getPicture("dog-identity.jpeg").toPath()));
+        File picture = getPicture("dog-identity.jpeg");
+        assertThat(Files.isSameFile(processedPicture.toPath(), picture.toPath()));
+        scenario.embed(com.google.common.io.Files.toByteArray(picture), "image/png");
     }
 
     @Then("^the picture should be displayed (\\d+) times$")
     public void the_picture_should_be_displayed_times(int arg1) throws Throwable {
-        assertThat(Files.isSameFile(processedPicture.toPath(), getPicture("dog-mini.jpeg").toPath()));
+        File picture = getPicture("dog-mini.jpeg");
+        assertThat(Files.isSameFile(processedPicture.toPath(), picture.toPath()));
     }
 
     @Then("^a black and white effect should by apply to the picture$")
     public void a_black_and_white_effect_should_by_apply_to_the_picture() throws Throwable {
-        assertThat(Files.isSameFile(processedPicture.toPath(), getPicture("dog-mini.jpeg").toPath()));
+        File picture = getPicture("dog-mini.jpeg");
+        assertThat(Files.isSameFile(processedPicture.toPath(), picture.toPath()));
+        scenario.embed(com.google.common.io.Files.toByteArray(picture), "image/png");
     }
 
 

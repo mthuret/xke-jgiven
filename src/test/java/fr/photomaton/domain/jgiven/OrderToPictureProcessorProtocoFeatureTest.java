@@ -1,32 +1,45 @@
-package fr.photomaton.domain;
+package fr.photomaton.domain.jgiven;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.jgiven.junit.SimpleScenarioTest;
-import fr.photomaton.domain.tags.PictureProcessorProtocol;
+import fr.photomaton.domain.Colorimetry;
+import fr.photomaton.domain.Format;
+import fr.photomaton.domain.Order;
+import fr.photomaton.domain.OrderBuilder;
+import fr.photomaton.domain.OrderToPictureProcessorProtocol;
+import fr.photomaton.domain.PictureBuilder;
+import fr.photomaton.domain.jgiven.tags.Protocol;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/*
+* Feature: Picture Processor Protocol
+
+  The photomaton embed a picture processor that is responsible for processing the pictures taken by users. In order to communicate with it, a specific protocol needs to be used.
+
+  This protocol follows the format : "colorimetry of the picture";"format of the picture"
+      */
 @RunWith(DataProviderRunner.class)
-@PictureProcessorProtocol
+@Protocol
 public class OrderToPictureProcessorProtocoFeatureTest extends SimpleScenarioTest<OrderToPictureProcessorProtocoFeatureTest.OrderToPictureProcessorProtocolSteps> {
 
     @Test
-    @DataProvider({"COLOR, PORTRAIT, C;P",
-            "COLOR, IDENTITY, C;I",
-            "BLACK_AND_WHITE, IDENTITY, BW;I",
-            "VINTAGE, MINI, V;M"})
-    public void should_convert_picture_order_into_picture_processor_protocol(Colorimetry colorimetry, Format format, String pictureProcessorOrder) {
+    @DataProvider({"COLOR, IDENTITY, C;I",
+            "COLOR, PORTRAIT, C;P",
+            "BLACK_AND_WHITE, MINI, BW;M",
+            "VINTAGE, PORTRAIT, V;P"})
+    public void should_convert_a_picture_order_into_a_picture_processor_protocol(Colorimetry colorimetry, Format format, String pictureProcessorInstruction) {
         //given
         given().a_$_$_picture_order(colorimetry, format);
 
         //when
-        when().order_is_converted_into_picture_processor_protocol();
+        when().an_order_is_converted_into_picture_processor_protocol();
 
         //then
-        then().the_converted_order_should_be_$(pictureProcessorOrder);
+        then().the_converted_order_should_be_$(pictureProcessorInstruction);
     }
 
     public static class OrderToPictureProcessorProtocolSteps {
@@ -44,7 +57,7 @@ public class OrderToPictureProcessorProtocoFeatureTest extends SimpleScenarioTes
                     .build();
         }
 
-        public void order_is_converted_into_picture_processor_protocol() {
+        public void an_order_is_converted_into_picture_processor_protocol() {
             pictureProcessorOrder = orderToPictureProcessorProtocol.convert(order);
         }
 

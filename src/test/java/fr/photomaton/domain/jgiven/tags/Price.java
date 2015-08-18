@@ -1,13 +1,13 @@
-package fr.photomaton.domain.tags;
+package fr.photomaton.domain.jgiven.tags;
 
 import com.tngtech.jgiven.annotation.IsTag;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IsTag( type = "Feature", value = "Photo Maker",
-    description = "Take beautiful picture" )
+@IsTag( type = "Feature", value = "Price",
+    description = "" )
 @Retention( RetentionPolicy.RUNTIME )
-public @interface PhotoMaker {
+public @interface Price {
 
 }
