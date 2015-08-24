@@ -1,4 +1,4 @@
-package fr.photomaton.domain.jgiven.tags;
+package fr.photomaton.domain.jgiven.tags.pictureprocessor;
 
 import com.tngtech.jgiven.annotation.IsTag;
 

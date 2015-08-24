@@ -9,7 +9,7 @@ import fr.photomaton.domain.Order;
 import fr.photomaton.domain.OrderBuilder;
 import fr.photomaton.domain.OrderToPictureProcessorProtocol;
 import fr.photomaton.domain.PictureBuilder;
-import fr.photomaton.domain.jgiven.tags.Protocol;
+import fr.photomaton.domain.jgiven.tags.pictureprocessor.Protocol;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 

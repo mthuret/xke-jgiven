@@ -19,7 +19,7 @@ import fr.photomaton.domain.PictureBuilder;
 import fr.photomaton.domain.PictureCombinationValidator;
 import fr.photomaton.domain.PriceValidator;
 import fr.photomaton.domain.Validator;
-import fr.photomaton.domain.jgiven.tags.Identity;
+import fr.photomaton.domain.jgiven.tags.format.Identity;
 import fr.photomaton.domain.pictureprocessor.PictureProcessor;
 import fr.photomaton.domain.pictureprocessor.PictureProcessorException;
 import org.junit.Test;

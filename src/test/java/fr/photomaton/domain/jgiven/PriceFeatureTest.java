@@ -43,8 +43,8 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.mock;
 
 @RunWith(DataProviderRunner.class)
-@fr.photomaton.domain.jgiven.tags.Colorimetry
-@fr.photomaton.domain.jgiven.tags.Format
+@fr.photomaton.domain.jgiven.tags.colorimetry.Colorimetry
+@fr.photomaton.domain.jgiven.tags.format.Format
 @Price
 public class PriceFeatureTest {
 

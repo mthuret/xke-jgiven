@@ -1,14 +1,13 @@
-package fr.photomaton.domain.jgiven.tags;
+package fr.photomaton.domain.jgiven.tags.colorimetry;
 
 import com.tngtech.jgiven.annotation.IsTag;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@Colorimetry
-@IsTag( value = "Color",
+@IsTag( type = "Feature", value = "Colorimetry",
     description = "" )
 @Retention( RetentionPolicy.RUNTIME )
-public @interface Color {
+public @interface Colorimetry {
 
 }

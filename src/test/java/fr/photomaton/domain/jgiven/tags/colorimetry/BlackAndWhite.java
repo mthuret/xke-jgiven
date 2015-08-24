@@ -1,13 +1,14 @@
-package fr.photomaton.domain.jgiven.tags;
+package fr.photomaton.domain.jgiven.tags.colorimetry;
 
 import com.tngtech.jgiven.annotation.IsTag;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IsTag( type = "Feature", value = "Format",
+@Colorimetry
+@IsTag(value = "Black and White",
     description = "" )
 @Retention( RetentionPolicy.RUNTIME )
-public @interface Format {
+public @interface BlackAndWhite {
 
 }
