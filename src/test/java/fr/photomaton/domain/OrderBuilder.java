@@ -14,7 +14,7 @@ public class OrderBuilder {
     }
 
     public Order build() {
-        if(!moneyOverrided) money = picture.price();
+        if (!moneyOverrided) money = picture.price();
         return new Order(picture, money);
     }
 
@@ -27,5 +27,9 @@ public class OrderBuilder {
     public OrderBuilder withPicture(Picture picture) {
         this.picture = picture;
         return this;
+    }
+
+    public OrderBuilder withPicture(PictureBuilder pictureBuilder) {
+        return withPicture(pictureBuilder.build());
     }
 }

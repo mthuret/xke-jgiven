@@ -3,14 +3,12 @@ package fr.photomaton.domain.cucumber;
 import com.google.common.io.Resources;
 import com.googlecode.catchexception.apis.CatchExceptionAssertJ;
 import com.tngtech.jgiven.annotation.ScenarioRule;
-import cucumber.api.PendingException;
 import cucumber.api.Scenario;
 import cucumber.api.java.Before;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import fr.photomaton.domain.*;
-import fr.photomaton.domain.Validator;
 import fr.photomaton.domain.pictureprocessor.PictureProcessor;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
@@ -57,7 +55,7 @@ public class PhotomatonStepDefs {
     }
 
     @Before
-    public void setup(Scenario scenario){
+    public void setup(Scenario scenario) {
         this.photoMaker = new PhotoMaker(pictureProcessor, identityValidator, priceValidator, pictureCombinationValidator);
         this.scenario = scenario;
     }
@@ -66,8 +64,8 @@ public class PhotomatonStepDefs {
     public void an_identity_picture_is_taken_by_the_photomaton() throws Throwable {
         Order order = new OrderBuilder()
                 .withPicture(new PictureBuilder()
-                        .withFormat(IDENTITY)
-                        .build())
+                                .withFormat(IDENTITY)
+                )
                 .build();
         command = new Command(order, pictureToProcess);
     }
@@ -184,9 +182,9 @@ public class PhotomatonStepDefs {
     public void a_picture_order(Colorimetry colorimetry, Format format) throws Throwable {
         order = new OrderBuilder()
                 .withPicture(new PictureBuilder()
-                        .withColorimetry(colorimetry)
-                        .withFormat(format)
-                        .build())
+                                .withColorimetry(colorimetry)
+                                .withFormat(format)
+                )
                 .build();
         command = new Command(order, pictureToProcess);
     }

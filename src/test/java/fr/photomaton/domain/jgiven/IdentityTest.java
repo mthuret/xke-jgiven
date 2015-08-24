@@ -8,17 +8,7 @@ import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 import com.tngtech.jgiven.annotation.Quoted;
 import com.tngtech.jgiven.annotation.ScenarioRule;
 import com.tngtech.jgiven.junit.SimpleScenarioTest;
-import fr.photomaton.domain.Colorimetry;
-import fr.photomaton.domain.Command;
-import fr.photomaton.domain.Format;
-import fr.photomaton.domain.Order;
-import fr.photomaton.domain.OrderBuilder;
-import fr.photomaton.domain.PhotoMaker;
-import fr.photomaton.domain.Picture;
-import fr.photomaton.domain.PictureBuilder;
-import fr.photomaton.domain.PictureCombinationValidator;
-import fr.photomaton.domain.PriceValidator;
-import fr.photomaton.domain.Validator;
+import fr.photomaton.domain.*;
 import fr.photomaton.domain.jgiven.tags.format.Identity;
 import fr.photomaton.domain.pictureprocessor.PictureProcessor;
 import fr.photomaton.domain.pictureprocessor.PictureProcessorException;
@@ -42,7 +32,7 @@ public class IdentityTest extends SimpleScenarioTest<IdentityTest.IdentitySteps>
     public void a_user_can_know_if_the_taken_picture_respect_the_standard_imposed_by_the_identity_format() throws Throwable {
 
         given().an_identity_picture_is_taken_by_the_photomaton()
-            .and().the_picture_does_not_respect_identity_picture_standard();
+                .and().the_picture_does_not_respect_identity_picture_standard();
 
         when().the_picture_is_being_processed_by_the_picture_processor();
 
@@ -88,10 +78,8 @@ public class IdentityTest extends SimpleScenarioTest<IdentityTest.IdentitySteps>
 
         public IdentitySteps an_identity_picture_is_taken_by_the_photomaton() {
             Order order = new OrderBuilder()
-                .withPicture(new PictureBuilder()
-                    .withFormat(IDENTITY)
-                    .build())
-                .build();
+                    .withPicture(new PictureBuilder().withFormat(IDENTITY))
+                    .build();
             command = new Command(order, pictureToProcess);
             return self();
         }
@@ -109,17 +97,17 @@ public class IdentityTest extends SimpleScenarioTest<IdentityTest.IdentitySteps>
 
         public void the_photomaton_should_reject_it_and_displayed_the_message(@Quoted String errorMessage) {
             CatchExceptionAssertJ.then(caughtException())
-                .hasMessage(errorMessage);
+                    .hasMessage(errorMessage);
             // currentStep.addAttachment(Attachment.plainText(errorMessage));
         }
 
         public void a_$_$_picture_order(Colorimetry colorimetry, Format format) {
             order = new OrderBuilder()
-                .withPicture(new PictureBuilder()
-                    .withColorimetry(colorimetry)
-                    .withFormat(format)
-                    .build())
-                .build();
+                    .withPicture(new PictureBuilder()
+                                    .withColorimetry(colorimetry)
+                                    .withFormat(format)
+                    )
+                    .build();
             command = new Command(order, pictureToProcess);
         }
     }

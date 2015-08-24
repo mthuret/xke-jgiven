@@ -3,12 +3,7 @@ package fr.photomaton.domain.jgiven;
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
 import com.tngtech.jgiven.junit.SimpleScenarioTest;
-import fr.photomaton.domain.Colorimetry;
-import fr.photomaton.domain.Format;
-import fr.photomaton.domain.Order;
-import fr.photomaton.domain.OrderBuilder;
-import fr.photomaton.domain.OrderToPictureProcessorProtocol;
-import fr.photomaton.domain.PictureBuilder;
+import fr.photomaton.domain.*;
 import fr.photomaton.domain.jgiven.tags.pictureprocessor.Protocol;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -51,9 +46,9 @@ public class OrderToPictureProcessorProtocoFeatureTest extends SimpleScenarioTes
         public void a_$_$_picture_order(Colorimetry colorimetry, Format format) {
             order = new OrderBuilder()
                     .withPicture(new PictureBuilder()
-                            .withColorimetry(colorimetry)
-                            .withFormat(format)
-                            .build())
+                                    .withColorimetry(colorimetry)
+                                    .withFormat(format)
+                    )
                     .build();
         }
 
