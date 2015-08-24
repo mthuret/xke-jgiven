@@ -1,6 +1,6 @@
 Feature: Identity pictures
 
-  A photomaton can't take identy pictures that respect state standards.
+  A photomaton can only take identity pictures that respect state standards.
 
   Scenario: a user can know if the taken picture respect the standard imposed by the identity format
 

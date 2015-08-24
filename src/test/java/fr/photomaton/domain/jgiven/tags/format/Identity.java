@@ -6,9 +6,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 @Format
-@IsTag( value = "Identity",
-    description = "" )
-@Retention( RetentionPolicy.RUNTIME )
+@IsTag(value = "Identity", description = "A photomaton can only take identity pictures that respect state standards.")
+@Retention(RetentionPolicy.RUNTIME)
 public @interface Identity {
-
 }
