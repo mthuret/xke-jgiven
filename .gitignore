@@ -1,3 +1,4 @@
 target
 xke-jgiven.iml
 .idea
+jgiven-reports/**/*.json
