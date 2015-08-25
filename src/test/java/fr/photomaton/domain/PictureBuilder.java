@@ -8,8 +8,15 @@ public class PictureBuilder {
     private Colorimetry colorimetry = COLOR;
     private Format format = PORTRAIT;
 
+    private PictureBuilder() {
+    }
+
+    public static PictureBuilder aDefaultPicture() {
+        return new PictureBuilder();
+    }
+
     public static Picture aPicture() {
-        return new PictureBuilder().build();
+        return aDefaultPicture().build();
     }
 
     public Picture build() {

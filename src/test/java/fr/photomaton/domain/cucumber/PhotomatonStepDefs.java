@@ -21,6 +21,8 @@ import java.nio.file.Files;
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
 import static fr.photomaton.domain.Format.IDENTITY;
+import static fr.photomaton.domain.OrderBuilder.aDefaultOrder;
+import static fr.photomaton.domain.PictureBuilder.aDefaultPicture;
 import static fr.photomaton.domain.PictureBuilder.aPicture;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
@@ -62,8 +64,8 @@ public class PhotomatonStepDefs {
 
     @Given("^an identity picture is taken by the photomaton$")
     public void an_identity_picture_is_taken_by_the_photomaton() throws Throwable {
-        Order order = new OrderBuilder()
-                .withPicture(new PictureBuilder()
+        Order order = aDefaultOrder()
+                .withPicture(aDefaultPicture()
                                 .withFormat(IDENTITY)
                 )
                 .build();
@@ -141,7 +143,7 @@ public class PhotomatonStepDefs {
 
     @Given("^the price of a \"(.*?)\" \"(.*?)\" is \"(.*?)\" euros$")
     public void the_price_of_a_is_euros(Colorimetry colorimetry, Format format, String picturePrice) throws Throwable {
-        picture = new PictureBuilder()
+        picture = aDefaultPicture()
                 .withColorimetry(colorimetry)
                 .withFormat(format)
                 .build();
@@ -150,7 +152,7 @@ public class PhotomatonStepDefs {
 
     @When("^more euros than the price of the wanted picture is given to the photomaton$")
     public void more_euros_than_the_price_of_the_wanted_picture_is_given_to_the_photomaton() throws Throwable {
-        order = new OrderBuilder()
+        order = aDefaultOrder()
                 .withMoney(picture.price() + 2)
                 .withPicture(picture)
                 .build();
@@ -170,7 +172,7 @@ public class PhotomatonStepDefs {
 
     @When("^not enough euros is given to the photomaton$")
     public void not_enough_euros_is_given_to_the_photomaton() throws Throwable {
-        order = new OrderBuilder()
+        order = aDefaultOrder()
                 .withMoney(picture.price() - 1)
                 .withPicture(picture)
                 .build();
@@ -180,8 +182,8 @@ public class PhotomatonStepDefs {
 
     @Given("^a \"([^\"]*)\" \"([^\"]*)\" picture order$")
     public void a_picture_order(Colorimetry colorimetry, Format format) throws Throwable {
-        order = new OrderBuilder()
-                .withPicture(new PictureBuilder()
+        order = aDefaultOrder()
+                .withPicture(aDefaultPicture()
                                 .withColorimetry(colorimetry)
                                 .withFormat(format)
                 )

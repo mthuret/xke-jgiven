@@ -9,8 +9,15 @@ public class OrderBuilder {
     private Picture picture = new Picture(COLOR, PORTRAIT);
     private Double money = 1.0;
 
+    private OrderBuilder() {
+    }
+
+    public static OrderBuilder aDefaultOrder() {
+        return new OrderBuilder();
+    }
+
     public static Order anOrder() {
-        return new OrderBuilder().build();
+        return aDefaultOrder().build();
     }
 
     public Order build() {
