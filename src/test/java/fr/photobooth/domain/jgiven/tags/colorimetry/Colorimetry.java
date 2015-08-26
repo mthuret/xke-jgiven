@@ -5,8 +5,9 @@ import com.tngtech.jgiven.annotation.IsTag;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IsTag( type = "Feature", value = "Colorimetry",
-    description = "" )
+import static fr.photobooth.domain.jgiven.tags.TagColor.COLORIMETRY_COLOR;
+
+@IsTag(type = "Feature", value = "Colorimetry", color = COLORIMETRY_COLOR)
 @Retention( RetentionPolicy.RUNTIME )
 public @interface Colorimetry {
 

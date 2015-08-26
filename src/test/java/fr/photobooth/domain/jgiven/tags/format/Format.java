@@ -5,8 +5,9 @@ import com.tngtech.jgiven.annotation.IsTag;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
-@IsTag( type = "Feature", value = "Format",
-    description = "" )
+import static fr.photobooth.domain.jgiven.tags.TagColor.FORMAT_COLOR;
+
+@IsTag(type = "Feature", value = "Format", color = FORMAT_COLOR)
 @Retention( RetentionPolicy.RUNTIME )
 public @interface Format {
 
