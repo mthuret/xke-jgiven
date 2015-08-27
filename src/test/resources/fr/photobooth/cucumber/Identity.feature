@@ -1,3 +1,4 @@
+@Identity
 Feature: Identity pictures
 
   A photo booth can only take identity pictures that respect state standards.
@@ -9,6 +10,7 @@ Feature: Identity pictures
     When the picture is being processed by the picture processor
     Then the photo booth should reject it and displayed "This picture does not respect identity picture standard"
 
+  @Vintage
   Scenario: a user can't choose a vintage identity picture
 
     Given a "VINTAGE" "IDENTITY" picture order

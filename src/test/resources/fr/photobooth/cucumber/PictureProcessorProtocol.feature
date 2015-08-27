@@ -1,3 +1,4 @@
+@Protocol
 Feature: Picture Processor Protocol
 
   The photo booth embed a picture processor that is responsible for processing the pictures taken by users. In order to communicate with it, a specific protocol needs to be used.

@@ -1,3 +1,4 @@
+@Price, @Colorimetry, @Format
 Feature: Prices of picture
 
   In order to let a user take a picture, the correct amount of money is given to the photo booth.
