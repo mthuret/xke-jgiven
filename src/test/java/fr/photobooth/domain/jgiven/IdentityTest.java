@@ -1,7 +1,7 @@
 package fr.photobooth.domain.jgiven;
 
 import com.tngtech.jgiven.junit.ScenarioTest;
-import fr.photobooth.domain.jgiven.stages.GivenAPicture;
+import fr.photobooth.domain.jgiven.stages.GivenAPictureOrder;
 import fr.photobooth.domain.jgiven.stages.ThenPhotoBoothRejectsPictures;
 import fr.photobooth.domain.jgiven.stages.WhenThePictureIsMade;
 import fr.photobooth.domain.jgiven.tags.colorimetry.Vintage;
@@ -12,7 +12,7 @@ import static fr.photobooth.domain.Colorimetry.VINTAGE;
 import static fr.photobooth.domain.Format.IDENTITY;
 
 @Identity
-public class IdentityTest extends ScenarioTest<GivenAPicture<?>, WhenThePictureIsMade<?>, ThenPhotoBoothRejectsPictures<?>> {
+public class IdentityTest extends ScenarioTest<GivenAPictureOrder<?>, WhenThePictureIsMade<?>, ThenPhotoBoothRejectsPictures<?>> {
 
     @Test
     public void a_user_can_know_if_the_taken_picture_respects_the_standard_imposed_by_the_identity_format() throws Exception {

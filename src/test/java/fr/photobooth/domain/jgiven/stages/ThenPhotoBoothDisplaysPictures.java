@@ -50,4 +50,10 @@ public class ThenPhotoBoothDisplaysPictures<SELF extends ThenPhotoBoothDisplaysP
                 fromBinaryBytes(toByteArray(processedPicture), PNG)
                 .withTitle(expectedTitle));
     }
+
+    public SELF the_photo_booth_should_allow_the_photo_taking() {
+        assertThat(processedPicture.isFile()).isTrue();
+        assertThat(processedPicture.exists()).isTrue();
+        return self();
+    }
 }

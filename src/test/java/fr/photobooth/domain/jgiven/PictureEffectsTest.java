@@ -4,7 +4,7 @@ import com.tngtech.jgiven.annotation.As;
 import com.tngtech.jgiven.junit.ScenarioTest;
 import fr.photobooth.domain.Colorimetry;
 import fr.photobooth.domain.Format;
-import fr.photobooth.domain.jgiven.stages.GivenAPicture;
+import fr.photobooth.domain.jgiven.stages.GivenAPictureOrder;
 import fr.photobooth.domain.jgiven.stages.ThenPhotoBoothDisplaysPictures;
 import fr.photobooth.domain.jgiven.stages.WhenThePictureIsBeingProcessed;
 import fr.photobooth.domain.jgiven.tags.colorimetry.BlackAndWhite;
@@ -14,10 +14,7 @@ import fr.photobooth.domain.jgiven.tags.format.Identity;
 import fr.photobooth.domain.jgiven.tags.format.Mini;
 import fr.photobooth.domain.jgiven.tags.format.Portrait;
 import fr.photobooth.domain.jgiven.tags.pictureprocessor.Effects;
-import fr.photobooth.domain.pictureprocessor.PictureProcessorException;
 import org.junit.Test;
-
-import java.net.URISyntaxException;
 
 import static fr.photobooth.domain.Colorimetry.COLOR;
 import static fr.photobooth.domain.Colorimetry.VINTAGE;
@@ -51,7 +48,7 @@ Feature: Picture Effects
     And a black and white effect should by apply to the picture
  */
 @Effects
-public class PictureEffectsTest extends ScenarioTest<GivenAPicture<?>, WhenThePictureIsBeingProcessed<?>, ThenPhotoBoothDisplaysPictures<?>> {
+public class PictureEffectsTest extends ScenarioTest<GivenAPictureOrder<?>, WhenThePictureIsBeingProcessed<?>, ThenPhotoBoothDisplaysPictures<?>> {
 
     @Vintage
     @Portrait
