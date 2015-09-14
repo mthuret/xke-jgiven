@@ -18,10 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class ThenPhotoBoothDisplaysPictures<SELF extends ThenPhotoBoothDisplaysPictures<?>> extends Stage<SELF> {
 
     @ExpectedScenarioState
-    private CurrentStep currentStep;
+    private File processedPicture;
 
     @ExpectedScenarioState
-    private File processedPicture;
+    private CurrentStep currentStep;
 
     public SELF the_picture_should_be_displayed_four_times() throws Exception {
         assertExpectedPicture("Identity picture", "dog-identity.jpeg");
@@ -52,10 +52,7 @@ public class ThenPhotoBoothDisplaysPictures<SELF extends ThenPhotoBoothDisplaysP
         File picture = getPicture(resourceName);
         assertThat(isSameFile(processedPicture.toPath(), picture.toPath()));
 
-        currentStep.addAttachment(Attachment
-                        .fromBinaryBytes(toByteArray(picture), PNG)
-                        .withTitle(title)
-        );
+        currentStep.addAttachment(Attachment.fromBinaryFile(picture, PNG).withTitle(title).showDirectly());
     }
 
     private File getPicture(String resourceName) throws URISyntaxException {
