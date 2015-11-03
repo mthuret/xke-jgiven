@@ -20,6 +20,9 @@ import java.nio.file.Files;
 
 import static com.googlecode.catchexception.CatchException.catchException;
 import static com.googlecode.catchexception.CatchException.caughtException;
+import static fr.photobooth.domain.OrderBuilder.anOrder;
+import static fr.photobooth.domain.PictureBuilder.aDefaultPicture;
+import static fr.photobooth.domain.PictureBuilder.aPicture;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -60,10 +63,8 @@ public class PhotoBoothStepDefs {
 
     @Given("^an identity picture is taken by the photo booth$")
     public void an_identity_picture_is_taken_by_the_photo_booth() throws Throwable {
-        Order order = OrderBuilder.aDefaultOrder()
-                .withPicture(PictureBuilder.aDefaultPicture()
-                                .withFormat(Format.IDENTITY)
-                )
+        Order order = anOrder()
+                .withPicture(aPicture().withFormat(Format.IDENTITY))
                 .build();
         command = new Command(order, pictureToProcess);
     }
@@ -139,7 +140,7 @@ public class PhotoBoothStepDefs {
 
     @Given("^the price of a \"(.*?)\" \"(.*?)\" is \"(.*?)\" euros$")
     public void the_price_of_a_is_euros(Colorimetry colorimetry, Format format, String picturePrice) throws Throwable {
-        picture = PictureBuilder.aDefaultPicture()
+        picture = aPicture()
                 .withColorimetry(colorimetry)
                 .withFormat(format)
                 .build();
@@ -148,7 +149,7 @@ public class PhotoBoothStepDefs {
 
     @When("^more euros than the price of the wanted picture is given to the photo booth")
     public void more_euros_than_the_price_of_the_wanted_picture_is_given_to_the_photo_booth() throws Throwable {
-        order = OrderBuilder.aDefaultOrder()
+        order = anOrder()
                 .withMoney(picture.price() + 2)
                 .withPicture(picture)
                 .build();
@@ -163,12 +164,12 @@ public class PhotoBoothStepDefs {
 
     @Given("^a picture with a certain price$")
     public void a_picture_with_a_certain_price() throws Throwable {
-        picture = PictureBuilder.aPicture();
+        picture = aDefaultPicture();
     }
 
     @When("^not enough euros is given to the photo booth")
     public void not_enough_euros_is_given_to_the_photo_booth() throws Throwable {
-        order = OrderBuilder.aDefaultOrder()
+        order = anOrder()
                 .withMoney(picture.price() - 1)
                 .withPicture(picture)
                 .build();
@@ -178,8 +179,8 @@ public class PhotoBoothStepDefs {
 
     @Given("^a \"([^\"]*)\" \"([^\"]*)\" picture order$")
     public void a_picture_order(Colorimetry colorimetry, Format format) throws Throwable {
-        order = OrderBuilder.aDefaultOrder()
-                .withPicture(PictureBuilder.aDefaultPicture()
+        order = anOrder()
+                .withPicture(aPicture()
                                 .withColorimetry(colorimetry)
                                 .withFormat(format)
                 )

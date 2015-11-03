@@ -3,19 +3,17 @@ package fr.photobooth.domain.jgiven;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
-import com.tngtech.jgiven.annotation.Table;
 import com.tngtech.jgiven.junit.SimpleScenarioTest;
 import fr.photobooth.domain.Colorimetry;
 import fr.photobooth.domain.Format;
 import fr.photobooth.domain.Order;
-import fr.photobooth.domain.OrderBuilder;
 import fr.photobooth.domain.OrderToPictureProcessorProtocol;
-import fr.photobooth.domain.Picture;
-import fr.photobooth.domain.PictureBuilder;
 import fr.photobooth.domain.jgiven.tags.pictureprocessor.Protocol;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static fr.photobooth.domain.OrderBuilder.anOrder;
+import static fr.photobooth.domain.PictureBuilder.aPicture;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(DataProviderRunner.class)
@@ -51,21 +49,16 @@ public class PictureProtocolProcessorTest extends
         }
 
         public void a_$_$_picture_order(Colorimetry colorimetry, Format format) {
-            order = OrderBuilder.aDefaultOrder().withPicture(
-                PictureBuilder.aDefaultPicture()
+            order = anOrder().withPicture(
+                    aPicture()
                     .withColorimetry(colorimetry)
                     .withFormat(format)
-                    .build())
-                .build();
-
+            ).build();
         }
 
         public void the_converted_order_should_be_$(String instructions) {
             assertThat(this.instructions).isEqualTo(instructions);
         }
 
-        public void a_$_$_picture_order(@Table Picture picture) {
-            order = OrderBuilder.aDefaultOrder().withPicture(picture).build();
-        }
     }
 }

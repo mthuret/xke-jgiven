@@ -15,7 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import static fr.photobooth.domain.OrderBuilder.aDefaultOrder;
+import static fr.photobooth.domain.OrderBuilder.anOrder;
 
 public class WhenPaymentIsMade<SELF extends WhenPaymentIsMade<?>> extends Stage<SELF> {
 
@@ -36,7 +36,7 @@ public class WhenPaymentIsMade<SELF extends WhenPaymentIsMade<?>> extends Stage<
     }
 
     public SELF not_enough_euros_is_given_to_the_photo_booth() {
-        final Order order = aDefaultOrder()
+        final Order order = anOrder()
                 .withMoney(picture.price() - 1)
                 .withPicture(picture)
                 .build();
@@ -46,7 +46,7 @@ public class WhenPaymentIsMade<SELF extends WhenPaymentIsMade<?>> extends Stage<
     }
 
     public SELF more_euros_than_the_price_of_the_wanted_picture_is_given_to_the_photo_booth() throws URISyntaxException {
-        final Order order = aDefaultOrder()
+        final Order order = anOrder()
                 .withMoney(picture.price() + 2)
                 .withPicture(picture)
                 .build();

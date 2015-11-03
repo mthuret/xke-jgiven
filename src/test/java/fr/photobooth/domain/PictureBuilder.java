@@ -11,16 +11,12 @@ public class PictureBuilder {
     private PictureBuilder() {
     }
 
-    public static PictureBuilder aDefaultPicture() {
+    public static PictureBuilder aPicture() {
         return new PictureBuilder();
     }
 
-    public static Picture aPicture() {
-        return aDefaultPicture().build();
-    }
-
-    public Picture build() {
-        return new Picture(colorimetry, format);
+    public static Picture aDefaultPicture() {
+        return aPicture().build();
     }
 
     public PictureBuilder withColorimetry(Colorimetry colorimetry) {
@@ -31,5 +27,9 @@ public class PictureBuilder {
     public PictureBuilder withFormat(Format format) {
         this.format = format;
         return this;
+    }
+
+    public Picture build() {
+        return new Picture(colorimetry, format);
     }
 }

@@ -12,8 +12,8 @@ import java.io.File;
 import java.io.IOException;
 
 import static fr.photobooth.domain.Format.IDENTITY;
-import static fr.photobooth.domain.OrderBuilder.aDefaultOrder;
-import static fr.photobooth.domain.PictureBuilder.aDefaultPicture;
+import static fr.photobooth.domain.OrderBuilder.anOrder;
+import static fr.photobooth.domain.PictureBuilder.aPicture;
 
 public class GivenAPictureOrder<SELF extends GivenAPictureOrder<?>> extends Stage<SELF> {
 
@@ -34,8 +34,8 @@ public class GivenAPictureOrder<SELF extends GivenAPictureOrder<?>> extends Stag
     }
 
     public SELF an_identity_picture_is_taken_by_the_photo_booth() {
-        Order order = aDefaultOrder()
-                .withPicture(aDefaultPicture().withFormat(IDENTITY))
+        Order order = anOrder()
+                .withPicture(aPicture().withFormat(IDENTITY))
                 .build();
 
         command = new Command(order, pictureToProcess);
@@ -44,12 +44,12 @@ public class GivenAPictureOrder<SELF extends GivenAPictureOrder<?>> extends Stag
     }
 
     public SELF a_$_$_picture_order(Colorimetry colorimetry, Format format) {
-        Order order = aDefaultOrder()
-                .withPicture(aDefaultPicture()
+        Order order = anOrder()
+                .withPicture(
+                        aPicture()
                                 .withColorimetry(colorimetry)
                                 .withFormat(format)
-                )
-                .build();
+                ).build();
 
         command = new Command(order, pictureToProcess);
 
