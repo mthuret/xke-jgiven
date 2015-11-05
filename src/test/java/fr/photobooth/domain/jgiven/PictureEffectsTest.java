@@ -1,7 +1,7 @@
 package fr.photobooth.domain.jgiven;
 
 import com.tngtech.jgiven.junit.ScenarioTest;
-import fr.photobooth.domain.jgiven.stages.GivenAPictureOrder;
+import fr.photobooth.domain.jgiven.stages.GivenAPictureCommand;
 import fr.photobooth.domain.jgiven.stages.ThenPhotoBoothDisplaysPictures;
 import fr.photobooth.domain.jgiven.stages.WhenPictureIsBeingProcessed;
 import fr.photobooth.domain.jgiven.tags.colorimetry.BlackAndWhite;
@@ -17,7 +17,7 @@ import static fr.photobooth.domain.Colorimetry.*;
 import static fr.photobooth.domain.Format.*;
 
 @Effects
-public class PictureEffectsTest extends ScenarioTest<GivenAPictureOrder<?>, WhenPictureIsBeingProcessed<?>, ThenPhotoBoothDisplaysPictures<?>> {
+public class PictureEffectsTest extends ScenarioTest<GivenAPictureCommand<?>, WhenPictureIsBeingProcessed<?>, ThenPhotoBoothDisplaysPictures<?>> {
 
     @Test
     @Portrait

@@ -53,7 +53,7 @@ public class PriceFeatureTest extends ScenarioTest<GivenAPicture<?>, WhenPayment
         when().not_enough_euros_is_given_to_the_photo_booth();
         $.and().the_picture_is_being_processed_by_the_picture_processor();
 
-        then().the_photo_booth_should_reject_it_and_displayed_the_message("not enough money provided : 0.0");
+        then().the_photo_booth_should_reject_it_and_display_the_message("not enough money provided : 0.0");
     }
 
 }

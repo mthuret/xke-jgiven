@@ -14,14 +14,15 @@ import java.io.IOException;
 import static fr.photobooth.domain.Format.IDENTITY;
 import static fr.photobooth.domain.OrderBuilder.anOrder;
 import static fr.photobooth.domain.PictureBuilder.aPicture;
+import static org.mockito.Mockito.mock;
 
-public class GivenAPictureOrder<SELF extends GivenAPictureOrder<?>> extends Stage<SELF> {
+public class GivenAPictureCommand<SELF extends GivenAPictureCommand<?>> extends Stage<SELF> {
 
     @ProvidedScenarioState
     private Command command;
 
     @ProvidedScenarioState
-    private Validator validator;
+    private Validator validator = mock(Validator.class);
 
     @ScenarioRule
     private TemporaryFolder folder = new TemporaryFolder();
@@ -39,7 +40,6 @@ public class GivenAPictureOrder<SELF extends GivenAPictureOrder<?>> extends Stag
                 .build();
 
         command = new Command(order, pictureToProcess);
-
         return self();
     }
 
@@ -52,12 +52,10 @@ public class GivenAPictureOrder<SELF extends GivenAPictureOrder<?>> extends Stag
                 ).build();
 
         command = new Command(order, pictureToProcess);
-
         return self();
     }
 
     public SELF the_picture_does_not_respect_identity_picture_standard() {
-        validator = Mockito.mock(Validator.class);
         Mockito.when(validator.validate(command)).thenReturn(false);
         return self();
     }

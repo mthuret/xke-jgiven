@@ -1,9 +1,9 @@
 @Identity
-Feature: Identity pictures
+Feature: Validate Identity pictures
 
   A photo booth can only take identity pictures that respect state standards.
 
-  Scenario: a user can know if the taken picture respect the standard imposed by the identity format
+  Scenario: do not take pictures not respecting the identity standard format
 
     Given an identity picture is taken by the photo booth
     And the picture does not respect identity picture standard
@@ -11,7 +11,7 @@ Feature: Identity pictures
     Then the photo booth should reject it and displayed "This picture does not respect identity picture standard"
 
   @Vintage
-  Scenario: a user can't choose a vintage identity picture
+  Scenario: reject vintage identity picture orders
 
     Given a "VINTAGE" "IDENTITY" picture order
     When the photo booth processed the picture
