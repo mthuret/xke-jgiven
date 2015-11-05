@@ -18,28 +18,25 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(DataProviderRunner.class)
 @Protocol
-public class PictureProtocolProcessorTest extends
-    SimpleScenarioTest<PictureProtocolProcessorTest.ProtocolSteps> {
+public class ConvertOrderToPictureProtocolProcessorTest extends SimpleScenarioTest<ConvertOrderToPictureProtocolProcessorTest.ProtocolSteps> {
 
     @Test
     @DataProvider({
-        "COLOR, IDENTITY, C;I",
-        "BLACK_AND_WHITE, MINI, BW;M",
-        "COLOR, PORTRAIT, C;P",
-        "VINTAGE, PORTRAIT, V;P"
+            "BLACK_AND_WHITE, MINI, BW;M",
+            "COLOR, IDENTITY, C;I",
     })
-    public void picture_orders_are_translated_into_a_specific_protocol_for_the_picture_processor(Colorimetry colorimetry,
-                                                                                                 Format format,
-                                                                                                 String instructions) {
+    public void translate_picture_orders_into_a_specific_protocol_for_the_picture_processor(Colorimetry colorimetry,
+                                                                                            Format format,
+                                                                                            String expectedInstructions) {
 
         given().a_$_$_picture_order(colorimetry, format);
 
         when().an_order_is_converted_into_picture_processor_protocol();
 
-        then().the_converted_order_should_be_$(instructions);
+        then().the_converted_order_should_be(expectedInstructions);
     }
 
-    public static class ProtocolSteps {
+    static class ProtocolSteps {
 
         private Order order;
         private String instructions;
@@ -49,16 +46,17 @@ public class PictureProtocolProcessorTest extends
         }
 
         public void a_$_$_picture_order(Colorimetry colorimetry, Format format) {
-            order = anOrder().withPicture(
-                    aPicture()
-                    .withColorimetry(colorimetry)
-                    .withFormat(format)
-            ).build();
+            order = anOrder()
+                    .withPicture(
+                            aPicture()
+                                    .withColorimetry(colorimetry)
+                                    .withFormat(format)
+                    )
+                    .build();
         }
 
-        public void the_converted_order_should_be_$(String instructions) {
-            assertThat(this.instructions).isEqualTo(instructions);
+        public void the_converted_order_should_be(String expectedInstructions) {
+            assertThat(instructions).isEqualTo(expectedInstructions);
         }
-
     }
 }
