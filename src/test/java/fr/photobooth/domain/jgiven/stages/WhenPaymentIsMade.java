@@ -1,6 +1,5 @@
 package fr.photobooth.domain.jgiven.stages;
 
-import com.google.common.io.Resources;
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
@@ -13,7 +12,6 @@ import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import static fr.photobooth.domain.OrderBuilder.anOrder;
 
@@ -35,27 +33,13 @@ public class WhenPaymentIsMade<SELF extends WhenPaymentIsMade<?>> extends Stage<
         pictureToProcess = folder.newFile("xx");
     }
 
-    public SELF not_enough_euros_is_given_to_the_photo_booth() {
+    public SELF $_euros_are_given_to_the_photo_booth(double amount) {
         final Order order = anOrder()
-                .withMoney(picture.price() - 1)
+                .withMoney(amount)
                 .withPicture(picture)
                 .build();
 
         command = new Command(order, pictureToProcess);
         return self();
-    }
-
-    public SELF more_euros_than_the_price_of_the_wanted_picture_is_given_to_the_photo_booth() throws URISyntaxException {
-        final Order order = anOrder()
-                .withMoney(picture.price() + 2)
-                .withPicture(picture)
-                .build();
-
-        command = new Command(order, getPicture("dog.jpeg"));
-        return self();
-    }
-
-    private File getPicture(String resourceName) throws URISyntaxException {
-        return new File(Resources.getResource(resourceName).toURI());
     }
 }

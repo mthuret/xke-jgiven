@@ -187,4 +187,21 @@ public class PhotoBoothStepDefs {
                 .build();
         command = new Command(order, pictureToProcess);
     }
+
+    @When("^(\\d) euros are given to the photo booth$")
+    public void eurosAreGivenToThePhotoBooth(double amount) throws Throwable {
+        final Order order = anOrder()
+                .withMoney(amount)
+                .withPicture(picture)
+                .build();
+        command = new Command(order, pictureToProcess);
+    }
+
+    @Given("^a \"([^\"]*)\" \"([^\"]*)\" picture with a price of (\\d) euros$")
+    public void aPictureWithAPriceOfEuros(Colorimetry colorimetry, Format format, double price) throws Throwable {
+        picture = aPicture()
+                .withColorimetry(colorimetry)
+                .withFormat(format)
+                .build();
+    }
 }
