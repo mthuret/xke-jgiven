@@ -24,6 +24,7 @@ import static fr.photobooth.domain.OrderBuilder.anOrder;
 import static fr.photobooth.domain.PictureBuilder.aDefaultPicture;
 import static fr.photobooth.domain.PictureBuilder.aPicture;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.contentOf;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
 
@@ -112,9 +113,9 @@ public class PhotoBoothStepDefs {
 
     @Then("^a sepia effect should be apply to the picture$")
     public void a_sepia_effect_should_be_apply_to_the_picture() throws Throwable {
-        File picture = getPicture("dog-sepia.jpeg");
-        assertThat(Files.isSameFile(processedPicture.toPath(), picture.toPath()));
-        scenario.embed(com.google.common.io.Files.toByteArray(picture), "image/png");
+        final File expectedPicture = getPicture("dog-sepia.jpeg");
+        assertThat(contentOf(processedPicture)).isEqualTo(contentOf(expectedPicture));
+        scenario.embed(com.google.common.io.Files.toByteArray(expectedPicture), "image/png");
     }
 
     @Then("^the picture should be displayed four times$")
