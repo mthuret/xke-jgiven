@@ -20,7 +20,7 @@ public class ValidateIdentityPicturesTest extends ScenarioTest<GivenAPictureComm
         given().an_identity_picture_is_taken_by_the_photo_booth()
                 .and().the_picture_does_not_respect_identity_picture_standard();
 
-        when().the_picture_is_being_processed_by_the_picture_processor();
+        when().the_picture_is_taken();
 
         then().the_photo_booth_should_reject_it_and_display_the_message(
                 "This picture does not respect identity picture standard"
@@ -33,7 +33,7 @@ public class ValidateIdentityPicturesTest extends ScenarioTest<GivenAPictureComm
 
         given().a_$_$_picture_order(VINTAGE, IDENTITY);
 
-        when().the_picture_is_being_processed_by_the_picture_processor();
+        when().the_picture_is_taken();
 
         then().the_photo_booth_should_reject_it_and_display_the_message(
                 "the picture combination IDENTITY VINTAGE is not allowed"

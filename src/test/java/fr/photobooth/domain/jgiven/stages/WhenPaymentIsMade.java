@@ -30,7 +30,7 @@ public class WhenPaymentIsMade<SELF extends WhenPaymentIsMade<?>> extends Stage<
 
     @BeforeStage
     public void before() throws IOException {
-        pictureToProcess = folder.newFile("xx");
+        pictureToProcess = folder.newFile("xxx");
     }
 
     public SELF $_euros_are_given_to_the_photo_booth(double amount) {

@@ -33,6 +33,13 @@ public class ThenPhotoBoothDisplaysPictures<SELF extends ThenPhotoBoothDisplaysP
         return self();
     }
 
+    public SELF the_photo_booth_should_allow_the_photo_taking() {
+        assertThat(processedPicture.isFile()).isTrue();
+        assertThat(processedPicture.exists()).isTrue();
+        return self();
+    }
+
+
     private File getPicture(String resourceName) throws URISyntaxException {
         return new File(getResource(resourceName).toURI());
     }
