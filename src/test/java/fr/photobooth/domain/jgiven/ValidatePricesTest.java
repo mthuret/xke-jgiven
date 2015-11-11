@@ -41,7 +41,7 @@ public class ValidatePricesTest extends ScenarioTest<GivenAPicture<?>, WhenPayme
         );
 
         when().$_euros_are_given_to_the_photo_booth(2);
-        $.and().the_picture_is_taken();
+        $.and().the_photobooth_processed_the_picture_command();
 
         then().the_photo_booth_should_reject_it_and_display_the_message("not enough money provided : 2.0");
     }
@@ -56,7 +56,7 @@ public class ValidatePricesTest extends ScenarioTest<GivenAPicture<?>, WhenPayme
         );
 
         when().$_euros_are_given_to_the_photo_booth(3);
-        $.and().the_picture_is_taken();
+        $.and().the_photobooth_processed_the_picture_command();
 
         $$.then().the_photo_booth_should_allow_the_photo_taking();
     }

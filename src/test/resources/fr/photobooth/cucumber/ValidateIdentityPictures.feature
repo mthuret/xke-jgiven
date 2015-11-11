@@ -5,14 +5,14 @@ Feature: Validate Identity pictures
 
   Scenario: do not take pictures not respecting the identity standard format
 
-    Given an identity picture is taken by the photo booth
+    Given an identity picture command
     And the picture does not respect identity picture standard
-    When the picture is being processed by the picture processor
+    When the photobooth processed the picture command
     Then the photo booth should reject it and displayed "This picture does not respect identity picture standard"
 
   @Vintage
-  Scenario: reject vintage identity picture orders
+  Scenario: reject vintage identity picture commands
 
-    Given a "VINTAGE" "IDENTITY" picture order
-    When the photo booth processed the picture
+    Given a "VINTAGE" "IDENTITY" picture command
+    When the photobooth processed the picture command
     Then the photo booth should reject it and displayed "the picture combination IDENTITY VINTAGE is not allowed"

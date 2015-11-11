@@ -5,7 +5,12 @@ import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import com.tngtech.jgiven.annotation.ScenarioRule;
 import com.tngtech.jgiven.annotation.Table;
-import fr.photobooth.domain.*;
+import fr.photobooth.domain.Colorimetry;
+import fr.photobooth.domain.Command;
+import fr.photobooth.domain.Format;
+import fr.photobooth.domain.Order;
+import fr.photobooth.domain.Picture;
+import fr.photobooth.domain.Validator;
 import fr.photobooth.domain.jgiven.formatter.PictureFormatter;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
@@ -37,28 +42,27 @@ public class GivenAPictureCommand<SELF extends GivenAPictureCommand<?>> extends 
         pictureToProcess = folder.newFile("xx");
     }
 
-    public SELF an_identity_picture_is_taken_by_the_photo_booth() {
+    public SELF an_identity_picture_command() {
         Order order = anOrder()
-                .withPicture(aPicture().withFormat(IDENTITY))
-                .build();
+            .withPicture(aPicture().withFormat(IDENTITY))
+            .build();
 
         command = new Command(order, pictureToProcess);
         return self();
     }
 
-    public SELF a_$_$_picture_order(Colorimetry colorimetry, Format format) {
+    public SELF a_$_$_picture_command(Colorimetry colorimetry, Format format) {
         Order order = anOrder()
-                .withPicture(
-                        aPicture()
-                                .withColorimetry(colorimetry)
-                                .withFormat(format)
-                ).build();
-
+            .withPicture(
+                aPicture()
+                    .withColorimetry(colorimetry)
+                    .withFormat(format)
+            ).build();
         command = new Command(order, pictureToProcess);
         return self();
     }
 
-    public SELF a_picture_order(@Table(header = VERTICAL) Picture picture) {
+    public SELF a_picture_command(@Table(header = VERTICAL) Picture picture) {
         Order order = anOrder()
             .withPicture(picture).build();
 
@@ -66,7 +70,7 @@ public class GivenAPictureCommand<SELF extends GivenAPictureCommand<?>> extends 
         return self();
     }
 
-    public SELF a_$_picture_order(@com.tngtech.jgiven.annotation.Format(value= PictureFormatter.class) Picture picture) {
+    public SELF a_$_picture_command(@com.tngtech.jgiven.annotation.Format(value = PictureFormatter.class) Picture picture) {
         Order order = anOrder()
             .withPicture(picture).build();
 

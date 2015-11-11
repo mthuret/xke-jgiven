@@ -17,10 +17,10 @@ public class ValidateIdentityPicturesTest extends ScenarioTest<GivenAPictureComm
     @Test
     public void do_not_take_pictures_not_respecting_the_identity_standard_format() throws Throwable {
 
-        given().an_identity_picture_is_taken_by_the_photo_booth()
+        given().an_identity_picture_command()
                 .and().the_picture_does_not_respect_identity_picture_standard();
 
-        when().the_picture_is_taken();
+        when().the_photobooth_processed_the_picture_command();
 
         then().the_photo_booth_should_reject_it_and_display_the_message(
                 "This picture does not respect identity picture standard"
@@ -31,9 +31,9 @@ public class ValidateIdentityPicturesTest extends ScenarioTest<GivenAPictureComm
     @Test
     public void reject_vintage_identity_picture_orders() throws Throwable {
 
-        given().a_$_$_picture_order(VINTAGE, IDENTITY);
+        given().a_$_$_picture_command(VINTAGE, IDENTITY);
 
-        when().the_picture_is_taken();
+        when().the_photobooth_processed_the_picture_command();
 
         then().the_photo_booth_should_reject_it_and_display_the_message(
                 "the picture combination IDENTITY VINTAGE is not allowed"

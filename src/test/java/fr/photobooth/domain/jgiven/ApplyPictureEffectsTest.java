@@ -20,7 +20,7 @@ public class ApplyPictureEffectsTest extends ScenarioTest<GivenAPictureCommand<?
     @Color
     public void display_four_times_the_picture_when_ordering_an_identity_format() throws Throwable {
 
-        given().a_$_$_picture_order(COLOR, IDENTITY);
+        given().a_$_$_picture_command(COLOR, IDENTITY);
 
         when().the_picture_is_being_processed_by_the_picture_processor();
 

@@ -62,8 +62,8 @@ public class PhotoBoothStepDefs {
         this.scenario = scenario;
     }
 
-    @Given("^an identity picture is taken by the photo booth$")
-    public void an_identity_picture_is_taken_by_the_photo_booth() throws Throwable {
+    @Given("^an identity picture command$")
+    public void an_identity_picture_command() throws Throwable {
         Order order = anOrder()
                 .withPicture(aPicture().withFormat(Format.IDENTITY))
                 .build();
@@ -75,8 +75,8 @@ public class PhotoBoothStepDefs {
         Mockito.when(identityValidator.validate(eq(command))).thenReturn(false);
     }
 
-    @When("^the picture is being processed by the picture processor$")
-    public void the_picture_is_being_processed_by_the_picture_processor() throws Throwable {
+    @When("^the photobooth processed the picture command$")
+    public void the_photobooth_processed_the_picture_command() throws Throwable {
         catchException(photoMaker).make(command);
     }
 
@@ -98,7 +98,7 @@ public class PhotoBoothStepDefs {
 
     @When("^the photo booth processed the picture$")
     public void the_photo_booth_processed_the_picture() throws Throwable {
-        the_picture_is_being_processed_by_the_picture_processor();
+        the_photobooth_processed_the_picture_command();
     }
 
     @When("^the picture processor processed the picture$")
@@ -178,8 +178,8 @@ public class PhotoBoothStepDefs {
         catchException(photoMaker).make(command);
     }
 
-    @Given("^a \"([^\"]*)\" \"([^\"]*)\" picture order$")
-    public void a_picture_order(Colorimetry colorimetry, Format format) throws Throwable {
+    @Given("^a \"([^\"]*)\" \"([^\"]*)\" picture command$")
+    public void a_picture_command(Colorimetry colorimetry, Format format) throws Throwable {
         order = anOrder()
                 .withPicture(aPicture()
                                 .withColorimetry(colorimetry)
@@ -187,6 +187,11 @@ public class PhotoBoothStepDefs {
                 )
                 .build();
         command = new Command(order, pictureToProcess);
+    }
+
+    @Given("^a \"([^\"]*)\" \"([^\"]*)\" picture order")
+    public void a_picture_order(Colorimetry colorimetry, Format format) throws Throwable {
+        a_picture_command(colorimetry, format);
     }
 
     @When("^(\\d) euros are given to the photo booth$")

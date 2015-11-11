@@ -52,7 +52,7 @@ public class WhenPictureIsMade<SELF extends WhenPictureIsMade<?>> extends Stage<
         );
     }
 
-    public SELF the_picture_is_taken() throws Exception {
+    public SELF the_photobooth_processed_the_picture_command() throws Exception {
         processedPicture = catchException(photoMaker).make(command);
         return self();
     }
