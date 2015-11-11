@@ -4,13 +4,16 @@ import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
 import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import com.tngtech.jgiven.annotation.ScenarioRule;
+import com.tngtech.jgiven.annotation.Table;
 import fr.photobooth.domain.*;
+import fr.photobooth.domain.jgiven.formatter.PictureFormatter;
 import org.junit.rules.TemporaryFolder;
 import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.IOException;
 
+import static com.tngtech.jgiven.annotation.Table.HeaderType.VERTICAL;
 import static fr.photobooth.domain.Format.IDENTITY;
 import static fr.photobooth.domain.OrderBuilder.anOrder;
 import static fr.photobooth.domain.PictureBuilder.aPicture;
@@ -50,6 +53,22 @@ public class GivenAPictureCommand<SELF extends GivenAPictureCommand<?>> extends 
                                 .withColorimetry(colorimetry)
                                 .withFormat(format)
                 ).build();
+
+        command = new Command(order, pictureToProcess);
+        return self();
+    }
+
+    public SELF a_picture_order(@Table(header = VERTICAL) Picture picture) {
+        Order order = anOrder()
+            .withPicture(picture).build();
+
+        command = new Command(order, pictureToProcess);
+        return self();
+    }
+
+    public SELF a_$_picture_order(@com.tngtech.jgiven.annotation.Format(value= PictureFormatter.class) Picture picture) {
+        Order order = anOrder()
+            .withPicture(picture).build();
 
         command = new Command(order, pictureToProcess);
         return self();
