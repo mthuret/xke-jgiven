@@ -14,3 +14,5 @@ Feature: Convert order to picture processor protocol
       | colorimetry     | format   | expectedInstructions |
       | BLACK_AND_WHITE | MINI     | BW;M                 |
       | COLOR           | IDENTITY | C;I                  |
+      | COLOR           | PORTRAIT | C;P                  |
+      | VINTAGE         | PORTRAIT | V;P                  |
