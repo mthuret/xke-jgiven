@@ -162,6 +162,8 @@
                 </executions>
                 <configuration>
                     <format>html5</format>
+                    <customJsFile>photobooth.css</customJsFile>
+                    <title>PhotoBooth BDD Scenarios</title>
                 </configuration>
             </plugin>
             <plugin>
