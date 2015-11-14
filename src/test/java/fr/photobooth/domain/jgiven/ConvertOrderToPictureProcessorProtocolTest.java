@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(DataProviderRunner.class)
 @Protocol
-public class ConvertOrderToPictureProtocolProcessorTest extends SimpleScenarioTest<ConvertOrderToPictureProtocolProcessorTest.ProtocolSteps> {
+public class ConvertOrderToPictureProcessorProtocolTest extends SimpleScenarioTest<ConvertOrderToPictureProcessorProtocolTest.ProtocolSteps> {
 
     @Test
     @DataProvider({
