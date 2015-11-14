@@ -5,6 +5,7 @@ import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.ExpectedScenarioState;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 
 import static com.google.common.io.Resources.getResource;
@@ -22,14 +23,7 @@ public class ThenPhotoBoothDisplaysPictures<SELF extends ThenPhotoBoothDisplaysP
     private File processedPicture;
 
     public SELF the_picture_should_be_displayed_four_times() throws Exception {
-        final File expectedPicture = getPicture("dog-identity.jpeg");
-        assertThat(contentOf(processedPicture)).isEqualTo(contentOf(expectedPicture));
-
-        currentStep.addAttachment(
-                fromBinaryFile(expectedPicture, PNG)
-                        .withTitle("Identity picture")
-                        .showDirectly()
-        );
+        assertExpectedPicture("dog-identity.jpeg", "Identity picture");
         return self();
     }
 
@@ -39,6 +33,27 @@ public class ThenPhotoBoothDisplaysPictures<SELF extends ThenPhotoBoothDisplaysP
         return self();
     }
 
+    public SELF a_sepia_effect_should_be_apply_to_the_picture() throws IOException, URISyntaxException {
+        assertExpectedPicture("dog-sepia.jpeg", "Sepia picture");
+        return self();
+    }
+
+
+    public SELF the_picture_should_be_displayed_sixteen_times() throws IOException, URISyntaxException {
+        assertExpectedPicture("dog-mini.jpeg", "Mini picture");
+        return self();
+    }
+
+    private void assertExpectedPicture(String pictureName, String tooltipTitle) throws URISyntaxException, IOException {
+        final File expectedPicture = getPicture(pictureName);
+        assertThat(contentOf(processedPicture)).isEqualTo(contentOf(expectedPicture));
+
+        currentStep.addAttachment(
+                fromBinaryFile(expectedPicture, PNG)
+                        .withTitle(tooltipTitle)
+                        .showDirectly()
+        );
+    }
 
     private File getPicture(String resourceName) throws URISyntaxException {
         return new File(getResource(resourceName).toURI());
