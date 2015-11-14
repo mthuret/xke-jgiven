@@ -24,6 +24,8 @@ public class ConvertOrderToPictureProcessorProtocolTest extends SimpleScenarioTe
     @DataProvider({
             "BLACK_AND_WHITE, MINI, BW;M",
             "COLOR, IDENTITY, C;I",
+            "COLOR, PORTRAIT, C;P",
+            "VINTAGE, PORTRAIT, V;P",
     })
     public void translate_picture_orders_into_a_specific_protocol_for_the_picture_processor(Colorimetry colorimetry,
                                                                                             Format format,
