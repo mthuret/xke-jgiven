@@ -62,22 +62,6 @@ public class GivenAPictureCommand<SELF extends GivenAPictureCommand<?>> extends 
         return self();
     }
 
-    public SELF a_picture_command(@Table(header = VERTICAL) Picture picture) {
-        Order order = anOrder()
-            .withPicture(picture).build();
-
-        command = new Command(order, pictureToProcess);
-        return self();
-    }
-
-    public SELF a_$_picture_command(@com.tngtech.jgiven.annotation.Format(value = PictureFormatter.class) Picture picture) {
-        Order order = anOrder()
-            .withPicture(picture).build();
-
-        command = new Command(order, pictureToProcess);
-        return self();
-    }
-
     public SELF the_picture_does_not_respect_identity_picture_standard() {
         Mockito.when(validator.validate(command)).thenReturn(false);
         return self();
