@@ -2,10 +2,12 @@ package fr.photobooth.domain.jgiven.stages;
 
 import com.tngtech.jgiven.Stage;
 import com.tngtech.jgiven.annotation.BeforeStage;
-import com.tngtech.jgiven.annotation.ExpectedScenarioState;
-import com.tngtech.jgiven.annotation.ProvidedScenarioState;
 import com.tngtech.jgiven.annotation.ScenarioRule;
-import fr.photobooth.domain.*;
+import fr.photobooth.domain.Command;
+import fr.photobooth.domain.PhotoMaker;
+import fr.photobooth.domain.PictureCombinationValidator;
+import fr.photobooth.domain.PriceValidator;
+import fr.photobooth.domain.Validator;
 import fr.photobooth.domain.pictureprocessor.PictureProcessor;
 import fr.photobooth.domain.pictureprocessor.PictureProcessorException;
 import org.junit.rules.TemporaryFolder;
@@ -20,13 +22,10 @@ import static org.mockito.Mockito.mock;
 
 public class WhenPictureIsMade<SELF extends WhenPictureIsMade<?>> extends Stage<SELF> {
 
-    @ExpectedScenarioState
     private Command command;
 
-    @ProvidedScenarioState
     private File processedPicture;
 
-    @ProvidedScenarioState
     private Validator identityValidator;
 
     @ScenarioRule
@@ -46,9 +45,9 @@ public class WhenPictureIsMade<SELF extends WhenPictureIsMade<?>> extends Stage<
 
         photoMaker = new PhotoMaker(
             pictureProcessor,
-                identityValidator,
-                new PriceValidator(),
-                new PictureCombinationValidator()
+            identityValidator,
+            new PriceValidator(),
+            new PictureCombinationValidator()
         );
     }
 
