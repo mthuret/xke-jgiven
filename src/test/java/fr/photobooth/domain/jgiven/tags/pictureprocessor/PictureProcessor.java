@@ -8,7 +8,6 @@ import java.lang.annotation.RetentionPolicy;
 import static fr.photobooth.domain.jgiven.tags.TagColor.PICTURE_PROCESSOR_COLOR;
 
 @IsTag(
-        type = "Feature",
         value = "Picture Processor",
         description = "The photo booth embed a picture processor that is responsible for processing the pictures taken " +
                 "by users.'",

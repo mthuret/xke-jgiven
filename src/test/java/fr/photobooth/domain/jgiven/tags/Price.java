@@ -8,7 +8,6 @@ import java.lang.annotation.RetentionPolicy;
 import static fr.photobooth.domain.jgiven.tags.TagColor.PRICE_COLOR;
 
 @IsTag(
-        type = "Feature",
         value = "Price",
         description = "In order to let a user take a picture, the correct amount of money is given to the photo booth.",
         color = PRICE_COLOR
