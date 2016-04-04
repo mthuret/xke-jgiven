@@ -9,7 +9,7 @@
 
     <properties>
         <cucumber.version>1.2.2</cucumber.version>
-        <jgiven.version>0.9.5</jgiven.version>
+        <jgiven.version>0.11.3</jgiven.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
